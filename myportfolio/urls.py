@@ -83,12 +83,17 @@ urlpatterns = [
 
 
 # =========================================================
-# MEDIA FILES
+# STATIC + MEDIA FILES
 # =========================================================
-# This allows uploaded project images to display
-# while DEBUG = True.
+# These allow Django to serve local CSS, JS, images, and uploaded media
+# during development when DEBUG = True.
 
 if settings.DEBUG:
+
+    urlpatterns += static(
+        settings.STATIC_URL,
+        document_root=settings.STATIC_ROOT
+    )
 
     urlpatterns += static(
         settings.MEDIA_URL,
