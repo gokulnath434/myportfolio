@@ -1,0 +1,75 @@
+{% extends "portfolio/base.html" %}
+{% load static %}
+
+{% block title %}Projects | Gokulnath S — Python Django Developer{% endblock %}
+{% block meta_description %}Explore Python and Django web applications built by Gokulnath S, including Student Management System and Job Portal.{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag"><i class="bi bi-code-slash"></i> Portfolio</span>
+            <h1 class="section-title">All <span class="text-gradient">Projects</span></h1>
+            <p class="section-subtitle">
+                A showcase of practical, database-driven web applications built with Python, Django, REST APIs, and modern frontend design.
+            </p>
+        </div>
+
+        <div class="projects-grid">
+            {% for project in projects %}
+            <div class="project-card">
+                <div class="project-thumb-wrapper">
+                    {% if project.image %}
+                    <img src="{{ project.image.url }}" alt="{{ project.title }} Preview" class="project-thumb" loading="lazy">
+                    {% else %}
+                    <div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-muted);font-size:2.5rem;">
+                        <i class="bi bi-window-code"></i>
+                    </div>
+                    {% endif %}
+                    <div class="project-thumb-overlay">
+                        <span class="project-badge-featured">Production Ready</span>
+                    </div>
+                </div>
+
+                <div class="project-body">
+                    <h2 class="project-title" style="font-size:1.35rem;">
+                        <a href="{% url 'project_detail' project.pk %}">{{ project.title }}</a>
+                    </h2>
+                    <p class="project-description">
+                        {{ project.description }}
+                    </p>
+
+                    <div class="project-tech-stack">
+                        {% for tech in project.get_technologies_list %}
+                        <span class="tech-badge">{{ tech }}</span>
+                        {% endfor %}
+                    </div>
+
+                    <div class="project-actions">
+                        <div class="btn-group-left">
+                            {% if project.github_link %}
+                            <a href="{{ project.github_link }}" target="_blank" rel="noopener noreferrer" class="btn-card-action" aria-label="GitHub Repository">
+                                <i class="bi bi-github"></i>
+                                <span>Code</span>
+                            </a>
+                            {% endif %}
+                            {% if project.live_link %}
+                            <a href="{{ project.live_link }}" target="_blank" rel="noopener noreferrer" class="btn-card-action" aria-label="Live Demo">
+                                <i class="bi bi-box-arrow-up-right"></i>
+                                <span>Demo</span>
+                            </a>
+                            {% endif %}
+                        </div>
+
+                        <a href="{% url 'project_detail' project.pk %}" class="btn-card-details">
+                            <span>Details</span>
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

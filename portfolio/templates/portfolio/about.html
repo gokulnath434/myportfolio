@@ -1,0 +1,134 @@
+{% extends "portfolio/base.html" %}
+{% load static %}
+
+{% block title %}About | Gokulnath S — Python Django Developer{% endblock %}
+{% block meta_description %}Learn more about Gokulnath S, an entry-level Python Django Developer with a B.Com CA background and Full Stack Python training.{% endblock %}
+
+{% block content %}
+<!-- About Hero -->
+<section class="section" style="padding-bottom:50px;">
+    <div class="container">
+        <div class="section-header" style="text-align:left;max-width:800px;margin-bottom:40px;">
+            <span class="section-tag"><i class="bi bi-person-badge-fill"></i> Developer Profile</span>
+            <h1 class="section-title">About <span class="text-gradient">Gokulnath S</span></h1>
+            <p class="section-subtitle">
+                Entry-level Python Django Developer with hands-on experience building scalable web applications, REST APIs, and database solutions.
+            </p>
+        </div>
+
+        <div class="about-grid">
+            <div class="about-text">
+                <p>
+                    I graduated with a <strong>B.Com in Computer Applications</strong> from Excel College for Commerce & Science (Periyar University), combining structured analytical thinking with practical software development concepts.
+                </p>
+                <p>
+                    Driven to build enterprise-grade software, I completed intensive <strong>Full Stack Development – Python training</strong> at Mastermind Techno Solution. Through this program, I deepened my knowledge of Python syntax, object-oriented design, Django MVC/MVT patterns, relational databases (MySQL), and REST APIs.
+                </p>
+                
+                <div class="about-highlight-box">
+                    <p>
+                        <strong>Technical Focus:</strong> My core target is <strong>Backend & Web Development</strong> with Python and Django. I focus on writing maintainable, clean code, optimizing database models, and designing intuitive user experiences.
+                    </p>
+                </div>
+
+                <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:28px;">
+                    <a href="{% url 'home' %}#projects" class="btn btn-primary">
+                        <i class="bi bi-folder-check"></i>
+                        <span>View Projects</span>
+                    </a>
+                    <a href="{% url 'resume' %}" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+                        <i class="bi bi-file-earmark-arrow-down-fill"></i>
+                        <span>Download Resume</span>
+                    </a>
+                    <a href="{% url 'home' %}#contact" class="btn btn-secondary">
+                        <i class="bi bi-chat-dots-fill"></i>
+                        <span>Contact Me</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Profile Overview Card -->
+            <div style="background:var(--bg-surface);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:32px 28px;">
+                <h3 style="font-size:1.35rem;font-weight:700;color:var(--text-primary);margin-bottom:20px;display:flex;align-items:center;gap:10px;">
+                    <i class="bi bi-info-circle-fill" style="color:var(--accent-cyan);"></i> Quick Facts
+                </h3>
+
+                <div style="display:flex;flex-direction:column;gap:16px;">
+                    <div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--border-subtle);padding-bottom:10px;">
+                        <span style="color:var(--text-muted);font-size:0.92rem;">Primary Target</span>
+                        <strong style="color:var(--text-primary);">Python Django Developer</strong>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--border-subtle);padding-bottom:10px;">
+                        <span style="color:var(--text-muted);font-size:0.92rem;">Degree</span>
+                        <strong style="color:var(--text-primary);">B.Com Computer Application</strong>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--border-subtle);padding-bottom:10px;">
+                        <span style="color:var(--text-muted);font-size:0.92rem;">College</span>
+                        <strong style="color:var(--text-primary);">Excel College (Periyar Univ.)</strong>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--border-subtle);padding-bottom:10px;">
+                        <span style="color:var(--text-muted);font-size:0.92rem;">Training</span>
+                        <strong style="color:var(--text-primary);">Mastermind Techno Solution</strong>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--border-subtle);padding-bottom:10px;">
+                        <span style="color:var(--text-muted);font-size:0.92rem;">Experience</span>
+                        <strong style="color:var(--text-primary);">Spiro Prime Tech Service</strong>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;">
+                        <span style="color:var(--text-muted);font-size:0.92rem;">Location</span>
+                        <strong style="color:var(--text-primary);">Tamil Nadu, India</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Education & Training Section -->
+<section class="section" style="padding-top:40px;">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag"><i class="bi bi-mortarboard-fill"></i> Journey</span>
+            <h2 class="section-title">Education & <span class="text-gradient">Training</span></h2>
+        </div>
+
+        <div class="edu-train-grid">
+            {% for edu in education %}
+            <div class="info-box-card">
+                <span class="box-tag"><i class="bi bi-mortarboard-fill"></i> Academic Education</span>
+                <h3 class="box-title">{{ edu.degree }}</h3>
+                <div class="box-institution">{{ edu.college }}</div>
+                <div class="box-meta">
+                    {% if edu.university %}<span>{{ edu.university }}</span>{% endif %}
+                    <span>{{ edu.year }}</span>
+                    {% if edu.percentage %}<span>{{ edu.percentage }}</span>{% endif %}
+                </div>
+                <p class="box-description">
+                    Built strong foundations in commerce computing, business application design, database principles, and programming fundamentals.
+                </p>
+            </div>
+            {% endfor %}
+
+            {% for tr in trainings %}
+            <div class="info-box-card">
+                <span class="box-tag"><i class="bi bi-patch-check-fill"></i> Professional Training</span>
+                <h3 class="box-title">{{ tr.program_name }}</h3>
+                <div class="box-institution">{{ tr.institution }}</div>
+                <div class="box-meta">
+                    <span>{{ tr.duration }}</span>
+                    <span>Certified</span>
+                </div>
+                <p class="box-description">
+                    {{ tr.description }}
+                </p>
+                <div class="topics-cloud">
+                    {% for topic in tr.get_topics_list %}
+                    <span class="tech-badge">{{ topic }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
